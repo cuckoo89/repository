@@ -28,7 +28,7 @@ public class SampleTest {
 		assertNotNull(restaurant);
 		
 		log.info(restaurant);
-		log.info("-------------------");
+		log.info("---------------dd----");
 		log.info(restaurant.getChef());
 		
 		
@@ -50,4 +50,13 @@ public class SampleTest {
 // assertNotNull()은 restaurant 변수가 null 이 아니어야만 테스트가 성공한다는 것을 의미한다. 테스트 작업은 프로젝트 초기에 설정해 두고 사용하는
 // 습관을가지는것이 좋다.
 // Run As>Junit Test를 실행해서 테스트 결과를 확인한다.
+// 코드의 실행 결과를 보면 정상적으로 객체가 생성된 것을 확인할 수 있다.
+// 실행된 결과에서 주목해야할 부분은 다음과 같다
+// new Restaurant() 와 같이 Restaurant 클래스에서 객체를 생성한 적이 없는데도 객체가 만들어졌다는 점 - 스프링은 관리가 필요한 객체(Bean)를
+// 어노테이션 등을 이용해서 객체를 생성하고 관리하는 일종의 '컨테이너'나 '팩토리'의 기능을 가지고 있다
+//- Restaurant 클래스의 @Data어노테이션으로 Lombok 을 이용해서 여러 메서드가 만들어진 점 - Lombok 은 자동으로 getter//setter 등을
+// 만들어 주는데 스프링은 생성자 주입 혹은 setter 주입을 이용해서 동작한다. lombok 을 통해서 getter/setter등을 자동으로 생성하고 'onMethod' 속성
+// 을 이용해서 작성된 setterdp @Autowired 어노테이션을 추가한다.
+//Restaurant 객체의 Chef 인스턴스 변수 (멤버변수)에 Chef 타입의 객체가 주입되어 있다는 점- 스프링은 @Autowired와 같은 어노테이션을 이용해서 개발자가
+// 직접객체들과의 관계를 관리핮 ㅣ않고 자동으로 관리되도록 한다.
 
