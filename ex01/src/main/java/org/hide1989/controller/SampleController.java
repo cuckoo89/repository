@@ -11,10 +11,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.extern.log4j.Log4j;
 @Controller
@@ -111,9 +113,22 @@ public class SampleController {
 			HttpHeaders header = new HttpHeaders();
 			header.add("content-Type", "application/json;charset=UTF-8");
 			return new ResponseEntity<>(msg, header, HttpStatus.OK);
-		
+			
 	}
-
+	
+	@GetMapping("/exUpload")
+	 public void exUpload() {
+		log.info("/exUpload.....");
+	}
+	
+	@PostMapping ("/exUploadPost")
+	public void exUploadPost(ArrayList<MultipartFile> files) {
+		files.forEach(file ->{
+			log.info("--------------------------------");
+			log.info("name:" + file.getOriginalFilename());
+			log.info("size:" + file.getSize());
+		});
+	}
 }
 
 //개발자 도구를 통해서 살펴보면 서버에서 전송하는 MIME 타입이 application/json 으로 처리되어있는것을 볼 수 있다. 만일 jackson-ddatabind 라이브러리
