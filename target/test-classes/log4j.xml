@@ -1,31 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
-<log4j:configuration
-	xmlns:log4j="http://jakarta.apache.org/log4j/">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 
 	<!-- Appenders -->
-	<appender name="console"
-		class="org.apache.log4j.ConsoleAppender">
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
 		<param name="Target" value="System.out" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
 		</layout>
 	</appender>
-
+	
 	<!-- Application Loggers -->
 	<logger name="org.hide1989.controller">
 		<level value="info" />
 	</logger>
-
+	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
 		<level value="info" />
-	</logger>
-
+	</logger>	
+	
 	<logger name="org.springframework.beans">
 		<level value="info" />
 	</logger>
-
+	
 	<logger name="org.springframework.context">
 		<level value="info" />
 	</logger>
@@ -34,28 +32,10 @@
 		<level value="info" />
 	</logger>
 
-	<logger name="jdbc.audit">
-		<level value="warn" />
-	</logger>
-
-	<logger name="jdbc.resultset">
-		<level value="warn" />
-	</logger>
-
-	<logger name="jdbc.connection">
-		<level value="warn" />
-	</logger>
-
 	<!-- Root Logger -->
 	<root>
 		<priority value="info" />
 		<appender-ref ref="console" />
 	</root>
-
+	
 </log4j:configuration>
-
-<!-- 테스트 코드를 실행하면 상당히 많은 양의 로그가 출력되기 때문에 청므 개발할 때는 좋지만 시간이 지나면서 불편하다고 느낄 
-	수 있다. 이런 생황에서는 로그의 레벨을 이용해ㅑ서 조금 수정해 줄 필요가 있다. 테스트코드가 실행 될 때의 로그와 관련된 설정은 
-	src/test/resource 밑에 log4j.xml 을 이용한다. (src/main/resource 가 아닌 src/test/resource 
-	임을 주의한다.) 테스트 코드가 실행될때 보여지는 info 메시지는 log4j.xml 의 마지막 부분에 있는 설정에 영향을 받았기 
-	때문이다. 만일 log4jdbc 에서 출력되는 로그를 조절 하고 싶다면 추가적인 <logger> 를 지정해서 처리한다 -->

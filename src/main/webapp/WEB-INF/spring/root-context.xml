@@ -1,57 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
-	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
-		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	
-	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
-	<!-- <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
-	<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE"></property> -->
-	
-	<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
-	<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:XE"></property>
-	
-	<property name="username" value="spring"></property>
-	<property name="password" value="sks13111"></property>
-	</bean>
-	
-		<!-- HikariCP configuration -->
-	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
-		destroy-method="close">
-		<constructor-arg ref="hikariConfig" />
-	</bean>
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-	<property name="dataSource" ref="dataSource"></property>
-	</bean>
-	
-	<mybatis-spring:scan base-package="org.hide1989.mapper"/>
-	
-	<context:component-scan base-package="org.hide1989.sample">
-	</context:component-scan>
-	
-
 		
 </beans>
-<!-- 스프링 클래스에서 객체를 생성하고객체들의 의존성에 대한 처리 작업까지 내부에서 모든것이 처리된다.
-     스프링에서 관리되는 객체를 흔히 빈 '이라고 한다' 이에대한 설정은 XML과 JAVA를 이요하여 처리할 수 있다
-   기존의 시스템은 아직까지는 XML 방식을 선호하지만, 최근 몇년동안 스프링과 관련된 자료를 검색해 보면 JAVA를 이용하는
-    설정도 많이 이용되고 있다. STS 의 Srping Legact Project의 경우 기본적으로 XML을 이용해서 스프링에서 관리해야
-    하는 객체들ㅇ르 처리한다.
-    프로젝트의 src 폴더 내에 root-context.xml은 스프링 프레임워크에서 관리해야하는 객체를 설정하는
-    파일이다. 스프링에서는 (Bean 빈 ) 이라고 한다
-   root- context. xml을 클릭하면 아래쪽에 NameSpace라는 텝이 보이게 되는데 이때 context 라는 항목을 체크한다.
-   변경된 xml을 저장하고 Bean Graph 텝을 선택하보면 Restaurant 와 Chef 객체가 설정된 것을 확인할 수 있다.
-   
-   <mybatis-spring:scan> 태그의 base-package 속성은 지정된 패키지읜 모든 MyBatis 관련 어노테이션을 찾아서 처리한다. Mapper를
-   설정하는 작업은 각각의 XML이나 Mapper 인터페이스를 설정할 수 도있짐나. 매번 너무 번잡하기 때문에 예제는 자동으로 org.hide1989.mapper 패키지를
-   잊식하는 방식으로 작성하는것이 가장 편리하다
-   
-   log4 jdbc를 이용하는 경우는 JDBC 드라이버와 URL 정보를 수정해야한다. root-context.xml 일부를 수정한다.-->
-  
-   
-   
