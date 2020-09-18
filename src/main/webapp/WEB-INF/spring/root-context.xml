@@ -31,6 +31,8 @@
 	</bean>
 	
 	<mybatis-spring:scan base-package="org.hide1989.mapper"/>
+	<context:component-scan base-package="org.hide1989.service">
+	</context:component-scan>
 
 
 </beans>

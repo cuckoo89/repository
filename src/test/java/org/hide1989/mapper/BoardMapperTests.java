@@ -56,6 +56,24 @@ public class BoardMapperTests {
 		log.info(board);
 	}
 	
+	@Test
 	
+	public void testDelete() {
+		
+		log.info("DELETE COUNT:"  + mapper.delete(4L));
+	}
+	
+	@Test
+	public void testUpdate() {
+		BoardVO board = new BoardVO();
+		//실행전 존재하는 번호인지 확인할 것
+		board.setBno(5L);
+		board.setTitle("수정된 제목");
+		board.setContent("수정된 내용");
+		board.setWriter("김정현수정");
+		
+		int count = mapper.update(board);
+		log.info("UPDATE COUNT:" + count);
+	}
 
 }
