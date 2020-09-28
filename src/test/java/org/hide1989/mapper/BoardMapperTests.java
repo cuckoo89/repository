@@ -1,6 +1,9 @@
 package org.hide1989.mapper;
 
+import java.util.List;
+
 import org.hide1989.domain.BoardVO;
+import org.hide1989.domain.Criteria;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +21,10 @@ public class BoardMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private BoardMapper mapper;
 	
-	@Test
-	public void testGetList() {
-		mapper.getList().forEach(board -> log.info(board));		
-	}
+	/*
+	 * @Test public void testGetList() { mapper.getList().forEach(board ->
+	 * log.info(board)); }
+	 */
 	
 	@Test
 	public void testInsert() {
@@ -74,6 +77,17 @@ public class BoardMapperTests {
 		
 		int count = mapper.update(board);
 		log.info("UPDATE COUNT:" + count);
+	}
+	
+	@Test
+	public void testPaging() {
+		Criteria cri = new Criteria();
+		//10개씩 3페이지
+		cri.setPageNum(1);
+		cri.setAmount(10);
+		List<BoardVO> list = mapper.getListWithPaging(cri);
+		
+		list.forEach(board -> log.info(board));
 	}
 
 }

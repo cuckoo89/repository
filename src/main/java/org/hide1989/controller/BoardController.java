@@ -1,6 +1,8 @@
 package org.hide1989.controller;
 
 import org.hide1989.domain.BoardVO;
+import org.hide1989.domain.Criteria;
+import org.hide1989.domain.PageDTO;
 import org.hide1989.service.BoardService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,10 +24,16 @@ public class BoardController {
 
 	private BoardService service;
 
+	/*
+	 * @GetMapping("/list") public void list(Model model) { log.info("list");
+	 * model.addAttribute("list", service.getList()); }
+	 */
+	
 	@GetMapping("/list")
-	public void list(Model model) {
-		log.info("list");
-		model.addAttribute("list", service.getList());
+	public void list(Criteria cri, Model model) {
+		log.info("list"+ cri);
+		model.addAttribute("list", service.getList(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri,123));
 	}
 	
 	@PostMapping("/register")
@@ -40,10 +48,10 @@ public class BoardController {
 		
 		return "redirect:/board/list";
 	}
-	@GetMapping("/get")
+	@GetMapping({"/get","/modify"})
 	public void get(@RequestParam("bno") Long bno, Model model) {
 		
-		log.info("/get");
+		log.info("/get or modify");
 		
 		model.addAttribute("board", service.get(bno));
 	}

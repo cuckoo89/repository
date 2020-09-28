@@ -2,13 +2,15 @@ package org.hide1989.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Select;
 import org.hide1989.domain.BoardVO;
+import org.hide1989.domain.Criteria;
 
 public interface BoardMapper {
 	
 	//@Select ("select * from tbl_board1 where bno >0 ")
 	public List<BoardVO> getList();
+	
+	public List<BoardVO> getListWithPaging(Criteria cri);
 	
 	public void insert (BoardVO board);
 	
