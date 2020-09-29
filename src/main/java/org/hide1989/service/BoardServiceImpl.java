@@ -67,6 +67,16 @@ import lombok.extern.log4j.Log4j;
 			
 			return mapper.getListWithPaging(cri);
 		}
+
+		@Override
+		public int getTotal(Criteria cri) {
+			// TODO Auto-generated method stub
+			
+			log.info("get total count");
+			return mapper.getTotalCount(cri);
+			
+		
+		}
 		
 	}
 
